@@ -350,6 +350,11 @@
       "id": 11,
       "phrase": "A favorite author",
       "placeholder": "malcolmgladwell"
+    },
+    {
+      "id": 12,
+      "phrase": "A favorite animal to hate",
+      "placeholder": "largesnakes"
     }
   ]
 }
