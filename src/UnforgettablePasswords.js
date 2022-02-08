@@ -5,7 +5,13 @@ import { NavBar } from "./components/NavBar";
 const Generator = () => {
   return (
     <section id="generator__block" className="form__block">
-      <section id="generator-result__block"></section>
+      <PasswordIdeaPrompts />
+      <section id="generator-result__block">
+        <p className="password-result__text">PASSWORD RESULT HERE</p>
+        <button id="clear-form__button" className="generator__button">
+          Start Over
+        </button>
+      </section>
       <form id="generator__form" action="">
         <section id="password-options__block">
           <section id="password-length-options__block">
@@ -64,11 +70,13 @@ const Generator = () => {
         <section id="generate-actions__block">
           <button
             id="generate-password__button"
-            className="generator-action__button"
+            className="generator-action__button generator__button"
           >
             Make My Password, Computer!
           </button>
-          <button className="generator-action__button">Repeat</button>
+          <button className="generator-action__button generator__button">
+            Repeat
+          </button>
         </section>
       </form>
     </section>
@@ -76,10 +84,19 @@ const Generator = () => {
 };
 
 const PasswordIdeaPrompts = () => {
+  // this component will need to export the phrase to Generator.js so that Generator can get the right placeholder value to put in the placeholder
   return (
     <>
       <section id="password-ideas__block">
-        <p className="password-idea__text">Your favorite dog breed</p>
+        <p className="password-idea__text">
+          Password Idea: Your favorite dog breed
+        </p>
+        <button
+          className="get-password-idea__buton"
+          title="Get some password ideas"
+        >
+          New Idea
+        </button>
       </section>
     </>
   );
