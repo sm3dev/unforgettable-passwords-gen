@@ -1,5 +1,5 @@
 # Unforgettable Passwords Generator by Michael P Wright, 
-Capstone 2 Project, Cohort 51, Nashville Software School, Nashville, Tenneessee, USA
+Capstone 2 Project, Cohort 51, Nashville Software School, Nashville, Tennessee, USA
 
 ## Getting Started with Create React App
 
