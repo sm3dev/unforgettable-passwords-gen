@@ -3,10 +3,12 @@ import { getEnglishLetters, getIdeaPrompts } from "./api";
 import { Footer } from "./components/Footer";
 import { NavBar } from "./components/NavBar";
 
-const Generator = () => {
+const Generator = ({ allIdeaPrompts }) => {
   return (
     <section id="generator__block" className="form__block">
-      <PasswordIdeaPrompts />
+      {allIdeaPrompts.map((ideaObj) => (
+        <PasswordIdeaPrompts key={ideaObj.id} ideaObj={ideaObj} />
+      ))}{" "}
       <section id="generator-result__block">
         <p className="password-result__text">PASSWORD RESULT HERE</p>
         <button id="clear-form__button" className="generator__button">
@@ -84,14 +86,13 @@ const Generator = () => {
   );
 };
 
-const PasswordIdeaPrompts = () => {
+const PasswordIdeaPrompts = ({ ideaObj }) => {
+  console.log(ideaObj);
   // this component will need to export the phrase to Generator.js so that Generator can get the right placeholder value to put in the placeholder
   return (
     <>
       <section id="password-ideas__block">
-        <p className="password-idea__text">
-          Password Idea: Your favorite dog breed
-        </p>
+        <p className="password-idea__text">{ideaObj.phrase}</p>
         <button
           className="get-password-idea__buton"
           title="Get some password ideas"
@@ -112,15 +113,18 @@ export default function UnforgettablePasswords() {
 
   useEffect(() => {
     setAllEnglishLetters(theLetters);
-    setAllIdeaPrompts(ideaPrompts)
-  }, []);
-  
-
+    setAllIdeaPrompts(ideaPrompts);
+  }, [ideaPrompts, theLetters]);
+  console.log(allIdeaPrompts);
   return (
     <>
       <NavBar />
       <h1>this is the Unforgettable Passwords Generator</h1>
-      <Generator />
+
+      <Generator
+        allEnglishLetters={allEnglishLetters}
+        allIdeaPrompts={allIdeaPrompts}
+      />
 
       <Footer />
     </>
