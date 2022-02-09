@@ -1,4 +1,5 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
+import { getEnglishLetters, getIdeaPrompts } from "./api";
 import { Footer } from "./components/Footer";
 import { NavBar } from "./components/NavBar";
 
@@ -103,6 +104,18 @@ const PasswordIdeaPrompts = () => {
 };
 
 export default function UnforgettablePasswords() {
+  const theLetters = getEnglishLetters();
+  const ideaPrompts = getIdeaPrompts();
+
+  const [allEnglishLetters, setAllEnglishLetters] = useState([theLetters]);
+  const [allIdeaPrompts, setAllIdeaPrompts] = useState([ideaPrompts]);
+
+  useEffect(() => {
+    setAllEnglishLetters(theLetters);
+    setAllIdeaPrompts(ideaPrompts)
+  }, []);
+  
+
   return (
     <>
       <NavBar />

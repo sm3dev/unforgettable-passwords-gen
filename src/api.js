@@ -1,6 +1,6 @@
 // API Data File
 
-englishLetters = [
+const englishLetters = [
   {
     id: 1,
     letter: "a",
@@ -297,7 +297,7 @@ englishLetters = [
   },
 ];
 
-ideaPrompts = [
+const ideaPrompts = [
   {
     id: 1,
     phrase: "Fruit you can't live without",
@@ -359,3 +359,11 @@ ideaPrompts = [
     placeholder: "largesnakes",
   },
 ];
+
+export const getEnglishLetters = () => {
+  return englishLetters;
+};
+
+export const getIdeaPrompts = () => {
+  return ideaPrompts;
+};
