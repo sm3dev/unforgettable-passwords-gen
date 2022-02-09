@@ -21,6 +21,8 @@ const PasswordIdeaPrompts = ({ ideaObj }) => {
 };
 
 const Generator = ({ allIdeaPrompts }) => {
+  let setPlaceholder = "";
+
   const addWord = (evt) => {
     evt.preventDefault();
     let userWord = document.getElementById("userWord").value;
@@ -28,7 +30,10 @@ const Generator = ({ allIdeaPrompts }) => {
     console.log(sessionStorage.getItem("myWord"));
   };
 
-  let setPlaceholder = "";
+  const clearForm = () => {
+    sessionStorage.clear();
+    document.getElementById("generator__form").reset();
+  };
 
   return (
     <section id="password-idea__block">
@@ -39,11 +44,15 @@ const Generator = ({ allIdeaPrompts }) => {
 
       <section id="generator-result__block">
         <p className="password-result__text">PASSWORD RESULT HERE</p>
-        <button id="clear-form__button" className="generator__button">
+        <button
+          id="clear-form__button"
+          className="generator__button"
+          onClick={clearForm}
+        >
           Start Over
         </button>
       </section>
-      <form id="generator__form" action="">
+      <form id="generator__form" autocomplete="off">
         <section id="password-options__block">
           <section id="password-length-options__block">
             {" "}
