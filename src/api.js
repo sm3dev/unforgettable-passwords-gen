@@ -131,7 +131,7 @@ const englishLetters = [
     id: 19,
     letter: "k",
     substitute1: "<",
-    substitute2: "K",
+    substitute2: "|<",
     substitute3: "K",
   },
   {
@@ -278,7 +278,7 @@ const englishLetters = [
     id: 40,
     letter: "x",
     substitute1: "*",
-    substitute2: "X",
+    substitute2: "><",
     substitute3: "X",
   },
   {
