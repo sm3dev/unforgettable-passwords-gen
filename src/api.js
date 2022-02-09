@@ -358,6 +358,11 @@ const ideaPrompts = [
     phrase: "A favorite animal to hate",
     placeholder: "largesnakes",
   },
+  {
+    id: 13,
+    phrase: "Your love language(s)",
+    placeholder: "wordsofaffirmation",
+  },
 ];
 
 export const getEnglishLetters = () => {

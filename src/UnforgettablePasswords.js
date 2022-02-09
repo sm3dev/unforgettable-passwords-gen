@@ -3,9 +3,24 @@ import { getEnglishLetters, getIdeaPrompts } from "./api";
 import { Footer } from "./components/Footer";
 import { NavBar } from "./components/NavBar";
 
-const Generator = ({ allIdeaPrompts }) => {
-  const saveInput = document.getElementById("generate-password__button");
+const PasswordIdeaPrompts = ({ ideaObj }) => {
+  // this component will need to export the phrase to Generator.js so that Generator can get the right placeholder value to put in the placeholder
+  return (
+    <section key={ideaObj?.id} id="password-ideas__block">
+      <p id={`idea-${ideaObj?.id}`} className="password-idea__text">
+        {ideaObj?.phrase}
+      </p>
+      <button
+        className="get-password-idea__buton"
+        title="Get some password ideas"
+      >
+        New Idea
+      </button>
+    </section>
+  );
+};
 
+const Generator = ({ allIdeaPrompts }) => {
   const addWord = (evt) => {
     evt.preventDefault();
     let userWord = document.getElementById("userWord").value;
@@ -13,12 +28,15 @@ const Generator = ({ allIdeaPrompts }) => {
     console.log(sessionStorage.getItem("myWord"));
   };
 
+  let setPlaceholder = "";
 
   return (
-    <section id="generator__block" className="form__block">
-      {allIdeaPrompts.map((ideaObj) => (
-        <PasswordIdeaPrompts key={ideaObj.id} ideaObj={ideaObj} />
-      ))}{" "}
+    <section id="password-idea__block">
+      {allIdeaPrompts.map((ideaObj) => {
+        setPlaceholder = ideaObj.placeholder;
+        <PasswordIdeaPrompts key={ideaObj.placeholder} ideaObj={ideaObj} />;
+      })}
+
       <section id="generator-result__block">
         <p className="password-result__text">PASSWORD RESULT HERE</p>
         <button id="clear-form__button" className="generator__button">
@@ -77,7 +95,7 @@ const Generator = ({ allIdeaPrompts }) => {
             name="userWord"
             type="text"
             className="user-word__input"
-            placeholder="placeholder text"
+            placeholder={setPlaceholder}
           />
         </section>
         <section id="generate-actions__block">
@@ -97,24 +115,6 @@ const Generator = ({ allIdeaPrompts }) => {
   );
 };
 
-const PasswordIdeaPrompts = ({ ideaObj }) => {
-  console.log(ideaObj);
-  // this component will need to export the phrase to Generator.js so that Generator can get the right placeholder value to put in the placeholder
-  return (
-    <>
-      <section id="password-ideas__block">
-        <p className="password-idea__text">{ideaObj.phrase}</p>
-        <button
-          className="get-password-idea__buton"
-          title="Get some password ideas"
-        >
-          New Idea
-        </button>
-      </section>
-    </>
-  );
-};
-
 export default function UnforgettablePasswords() {
   const theLetters = getEnglishLetters();
   const ideaPrompts = getIdeaPrompts();
@@ -126,7 +126,6 @@ export default function UnforgettablePasswords() {
     setAllEnglishLetters(theLetters);
     setAllIdeaPrompts(ideaPrompts);
   }, [ideaPrompts, theLetters]);
-  console.log(allIdeaPrompts);
   return (
     <>
       <NavBar />
