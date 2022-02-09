@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { getEnglishLetters, getIdeaPrompts } from "./api";
 import { Footer } from "./components/Footer";
+import { getRandomObj } from "./components/Helpers";
 import { NavBar } from "./components/NavBar";
 
 const PasswordIdeaPrompts = ({ ideaObj }) => {
@@ -24,6 +25,7 @@ const Generator = ({ allIdeaPrompts }) => {
   // save the password result in State, so it can be rendered in the DOM to show the user the word they typed next to the password result
   const [newPasswordResult, setNewPasswordResult] = useState("");
   const [givenWord, setGivenWord] = useState("");
+  const [passwordIdeaObj, setPasswordIdeaObj] = useState({});
   let setPlaceholder = "";
 
   // Save input text into sessionStorage; received from the input field #userWord
@@ -51,7 +53,6 @@ const Generator = ({ allIdeaPrompts }) => {
       "I will create a new password! using the word:",
       passwordResult
     );
-    // setNewPasswordResult(passwordResult);
   };
 
   // Stretch Goal -- Allow user to get a new password from their original word
@@ -59,6 +60,7 @@ const Generator = ({ allIdeaPrompts }) => {
   //     evt.preventDefault();
   //   };
 
+  
   return (
     <section id="password-generator">
       <section id="password-idea__block">
