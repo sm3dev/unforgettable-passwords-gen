@@ -1,3 +1,4 @@
+tag_the_issues_here_or_remove_me
 # Description
 
 ## Type of change
@@ -11,8 +12,7 @@
 
 
 ## ADDITION:
-Added a "More Details" button on the Event Card.
-Added styling to fall in-line with existing buttons.
+Added any extra comments or remarks
 
 # Checklist:
 

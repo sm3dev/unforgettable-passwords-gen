@@ -363,6 +363,11 @@ const ideaPrompts = [
     phrase: "Your love language(s)",
     placeholder: "wordsofaffirmation",
   },
+  {
+    id: 14,
+    phrase: "Favorite cartoon character",
+    placeholder: "thegingerbreadman",
+  }
 ];
 
 export const getEnglishLetters = () => {
