@@ -4,6 +4,16 @@ import { Footer } from "./components/Footer";
 import { NavBar } from "./components/NavBar";
 
 const Generator = ({ allIdeaPrompts }) => {
+  const saveInput = document.getElementById("generate-password__button");
+
+  const addWord = (evt) => {
+    evt.preventDefault();
+    let userWord = document.getElementById("userWord").value;
+    sessionStorage.setItem("myWord", userWord);
+    console.log(sessionStorage.getItem("myWord"));
+  };
+
+
   return (
     <section id="generator__block" className="form__block">
       {allIdeaPrompts.map((ideaObj) => (
@@ -74,6 +84,7 @@ const Generator = ({ allIdeaPrompts }) => {
           <button
             id="generate-password__button"
             className="generator-action__button generator__button"
+            onClick={addWord}
           >
             Make My Password, Computer!
           </button>
