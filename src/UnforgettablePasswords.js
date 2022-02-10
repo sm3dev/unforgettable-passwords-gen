@@ -34,11 +34,16 @@ const Generator = ({ allIdeaPrompts }) => {
       let userWord = document.getElementById("userWord").value;
 
       let testArrayFrom = Array.from(userWord);
-      console.log(testArrayFrom)
+      console.log(testArrayFrom);
 
-      let testArrayPutBackTogether = testArrayFrom.push(...testArrayFrom)
-      testArrayFrom.push(...testArrayFrom)
-      console.log(testArrayFrom)
+      let testArrayPutBackTogether = testArrayFrom.push(...testArrayFrom);
+      testArrayFrom.push(...testArrayFrom);
+
+
+    //   TESTING AREA 
+      testArrayFrom.map(function (oneLetter) {
+        return console.log(oneLetter);
+      });
 
       sessionStorage.setItem("myWord", userWord);
       setGivenWord(userWord);
@@ -57,18 +62,14 @@ const Generator = ({ allIdeaPrompts }) => {
   const handleNewPassword = (evt) => {
     evt.preventDefault();
     let passwordResult = addWord();
-    console.log(
-      "I will create a new password! using the word:",
-      passwordResult
-    );
+    console.log("I will create a new password using the word", passwordResult);
   };
-
 
   // Stretch Goal -- Allow user to get a new password from their original word
   //   const handleRepeat = (evt) => {
   //     evt.preventDefault();
   //   };
-  
+
   return (
     <section id="password-generator">
       <section id="password-idea__block">
