@@ -46,12 +46,8 @@ const Generator = ({ allIdeaPrompts, allEnglishLetters }) => {
       let testArrayPutBackTogether = getArrayFrom.push(...getArrayFrom);
       getArrayFrom.push(...getArrayFrom);
 
-      //   TESTING AREA
-      //   getArrayFrom.map(function (oneLetter) {
-      //     return console.log(oneLetter);
-      //   });
-
       sessionStorage.setItem("myWord", userWord);
+      changeWord(userWord);
       setGivenWord(userWord);
       return userWord;
     } else {
@@ -61,37 +57,43 @@ const Generator = ({ allIdeaPrompts, allEnglishLetters }) => {
 
   //   first, map through the database letters
 
-  function testing() {
-      let rebuiltString = ""
-      // map through the englishLetters array from the database
-    allEnglishLetters.map((data) => {
+  function changeWord(string) {
+    let rebuiltString = "";
+    // map through the englishLetters array from the database
+    allEnglishLetters.find((data) => {
+      let substituteArray = [
+        data.substitute1,
+        data.substitute2,
+        data.substitute3,
+      ];
 
-        // replace each letter with something else
-        
+// I need to output an array or string that matches only the characters in both allEnglishLetters.letter with a letter from the string argument 
+// GOTTA GET MATCH WORKING
 
-        // i want to look for matches in testUserArray
+      let getArrayFrom = Array.from(string);
 
-        
-      console.log(data.letter);
+      // replace each letter with something else
+      console.log(getArrayFrom.replaceAll("tt", getRandomObj(substituteArray)));
+
+      // i want to look for matches in testUserArray
+
+      //   console.log(data.letter);
     });
 
     // use the array created from the user's input string
-    console.log(testUserArray)
-    testUserArray.map((obj) => {
-        // got the replace to work!
-        console.log(obj.replace("o","MUFFIN"))
+    console.log(testUserArray);
+    //     testUserArray.map((obj) => {
+    //         // got the replace to work!
+    //         console.log(obj.replace("o","MUFFIN"))
 
-        // I can use getRandomObj in the replace second argument AFTER creating an array from the three substitute values: substitute1, substitute2, substitute3
-        
-        // console.log(obj + "boom")
-});
+    //         // I can use getRandomObj in the replace second argument AFTER creating an array from the three substitute values: substitute1, substitute2, substitute3
+
+    //         // console.log(obj + "boom")
+    // });
 
     // take and array and make it a string without any spaces
-    rebuiltString = testUserArray.join("")
-    console.log(rebuiltString)
-
-    
-
+    rebuiltString = testUserArray.join("");
+    console.log(rebuiltString);
   }
 
   //   second, look for matches between the englishLetters.letter obj and the letters of the user's word
@@ -105,7 +107,6 @@ const Generator = ({ allIdeaPrompts, allEnglishLetters }) => {
   const handleNewPassword = (evt) => {
     evt.preventDefault();
     let passwordResult = addWord();
-    testing();
     console.log("I will create a new password using the word", passwordResult);
   };
 
