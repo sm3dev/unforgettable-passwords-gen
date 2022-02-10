@@ -62,11 +62,36 @@ const Generator = ({ allIdeaPrompts, allEnglishLetters }) => {
   //   first, map through the database letters
 
   function testing() {
+      let rebuiltString = ""
+      // map through the englishLetters array from the database
     allEnglishLetters.map((data) => {
+
+        // replace each letter with something else
+        
+
+        // i want to look for matches in testUserArray
+
+        
       console.log(data.letter);
     });
 
-    testUserArray.map((obj) => console.log(obj + "boom"));
+    // use the array created from the user's input string
+    console.log(testUserArray)
+    testUserArray.map((obj) => {
+        // got the replace to work!
+        console.log(obj.replace("o","MUFFIN"))
+
+        // I can use getRandomObj in the replace second argument AFTER creating an array from the three substitute values: substitute1, substitute2, substitute3
+        
+        // console.log(obj + "boom")
+});
+
+    // take and array and make it a string without any spaces
+    rebuiltString = testUserArray.join("")
+    console.log(rebuiltString)
+
+    
+
   }
 
   //   second, look for matches between the englishLetters.letter obj and the letters of the user's word
