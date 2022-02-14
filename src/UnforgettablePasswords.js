@@ -1,3 +1,4 @@
+import { getNextKeyDef } from "@testing-library/user-event/dist/keyboard/getNextKeyDef";
 import React, { useEffect, useState } from "react";
 import { getEnglishLetters, getIdeaPrompts } from "./api";
 import { Footer } from "./components/Footer";
@@ -21,32 +22,81 @@ const PasswordIdeaPrompts = ({ ideaObj }) => {
   );
 };
 
-const Generator = ({ allIdeaPrompts }) => {
+const Generator = ({ allIdeaPrompts, allEnglishLetters }) => {
   // save the password result in State, so it can be rendered in the DOM to show the user the word they typed next to the password result
   const [newPasswordResult, setNewPasswordResult] = useState("");
   const [givenWord, setGivenWord] = useState("");
   const [passwordIdeaObj, setPasswordIdeaObj] = useState({});
   let setPlaceholder = "";
 
+  //   replace each of the array items from the new array
+  //   testArrayFrom.find((data) => data)
+
+  let testUserArray = [];
+
   // Save input text into sessionStorage; received from the input field #userWord
   const addWord = () => {
     if (document.getElementById("userWord").value !== "") {
-      let userWord = document.getElementById("userWord").value;
+      const userWord = document.getElementById("userWord").value;
 
-      let testArrayFrom = Array.from(userWord);
-      console.log(testArrayFrom)
+      let getArrayFrom = Array.from(userWord);
+      testUserArray = Array.from(userWord);
+      console.log(testUserArray);
 
-      let testArrayPutBackTogether = testArrayFrom.push(...testArrayFrom)
-      testArrayFrom.push(...testArrayFrom)
-      console.log(testArrayFrom)
+      let testArrayPutBackTogether = getArrayFrom.push(...getArrayFrom);
+      getArrayFrom.push(...getArrayFrom);
 
       sessionStorage.setItem("myWord", userWord);
+      changeWord(userWord);
       setGivenWord(userWord);
       return userWord;
     } else {
       window.alert("Oops! You have to give me a word!");
     }
   };
+
+  //   first, map through the database letters
+
+  function changeWord(string) {
+    let rebuiltString = "";
+    // map through the englishLetters array from the database
+    allEnglishLetters.map((data) => {
+      let substituteArray = [
+        data.substitute1,
+        data.substitute2,
+        data.substitute3,
+      ];
+
+// I need to output an array or string that matches only the characters in both allEnglishLetters.letter with a letter from the string argument 
+// GOTTA GET MATCH WORKING
+
+      let getArrayFrom = Array.from(string);
+
+      // replace each letter with something else
+      console.log(getArrayFrom.replaceAll("tt", getRandomObj(substituteArray)));
+
+      // i want to look for matches in testUserArray
+
+      //   console.log(data.letter);
+    });
+
+    // use the array created from the user's input string
+    console.log(testUserArray);
+    //     testUserArray.map((obj) => {
+    //         // got the replace to work!
+    //         console.log(obj.replace("o","MUFFIN"))
+
+    //         // I can use getRandomObj in the replace second argument AFTER creating an array from the three substitute values: substitute1, substitute2, substitute3
+
+    //         // console.log(obj + "boom")
+    // });
+
+    // take and array and make it a string without any spaces
+    rebuiltString = testUserArray.join("");
+    console.log(rebuiltString);
+  }
+
+  //   second, look for matches between the englishLetters.letter obj and the letters of the user's word
 
   //   Clear the form and clear sessionStorage
   const clearForm = () => {
@@ -57,18 +107,14 @@ const Generator = ({ allIdeaPrompts }) => {
   const handleNewPassword = (evt) => {
     evt.preventDefault();
     let passwordResult = addWord();
-    console.log(
-      "I will create a new password! using the word:",
-      passwordResult
-    );
+    console.log("I will create a new password using the word", passwordResult);
   };
-
 
   // Stretch Goal -- Allow user to get a new password from their original word
   //   const handleRepeat = (evt) => {
   //     evt.preventDefault();
   //   };
-  
+
   return (
     <section id="password-generator">
       <section id="password-idea__block">
@@ -135,7 +181,7 @@ const Generator = ({ allIdeaPrompts }) => {
           <input
             id="userWord"
             name="userWord"
-            type="text"
+            type="search"
             className="user-word__input"
             placeholder={setPlaceholder}
           />
