@@ -181,7 +181,7 @@ const Generator = ({ allIdeaPrompts, allEnglishLetters }) => {
           <input
             id="userWord"
             name="userWord"
-            type="text"
+            type="search"
             className="user-word__input"
             placeholder={setPlaceholder}
           />
