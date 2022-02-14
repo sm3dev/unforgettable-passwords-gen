@@ -60,7 +60,7 @@ const Generator = ({ allIdeaPrompts, allEnglishLetters }) => {
   function changeWord(string) {
     let rebuiltString = "";
     // map through the englishLetters array from the database
-    allEnglishLetters.find((data) => {
+    allEnglishLetters.map((data) => {
       let substituteArray = [
         data.substitute1,
         data.substitute2,
