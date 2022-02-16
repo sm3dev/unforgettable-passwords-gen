@@ -41,7 +41,7 @@ const Generator = ({ allIdeaPrompts, allEnglishLetters }) => {
 
       let getArrayFrom = Array.from(userWord);
       testUserArray = Array.from(userWord);
-      console.log(testUserArray);
+    //   console.log(testUserArray);
 
       let testArrayPutBackTogether = getArrayFrom.push(...getArrayFrom);
       getArrayFrom.push(...getArrayFrom);
@@ -67,20 +67,45 @@ const Generator = ({ allIdeaPrompts, allEnglishLetters }) => {
 
     // create a regular expression
     function apower(item) {
-      console.log("I'm the callback function", item);
-      return new RegExp("item", "i");
+        let aRegex = new RegExp(item, "gi");
+    //   console.log("I'm the callback function", item);
+      return aRegex
     }
+
+    // map through the string array create by applying Array.from on the string argument passed into the changeWord function
+    const matchArray = Array.from(string);
+    console.log(matchArray)
+
+    // a blank array that will hold the new word after substitutions are made in the map() 
+    let userWordCharacter = []
 
     // map through the englishLetters array from the database
     const substitutedArray = allEnglishLetters.map((data) => {
-      let regex = apower(data.letter);
-      console.log(regex);
+        let substituteArray = [
+            data.substitute1,
+            data.substitute2,
+            data.substitute3,
+          ];
 
-      let substituteArray = [
-        data.substitute1,
-        data.substitute2,
-        data.substitute3,
-      ];
+        let rebuiltIt = ""
+      let regex = apower(data.letter);
+
+if (string.match(regex)) {
+    const newWord = [];
+    // find the match and replace it
+    userWordCharacter.push(string.replace(regex, getRandomObj(substituteArray)))
+
+    console.log(string.replace(regex, data.substitute2))
+    console.log(string, regex, data.substitute2)
+    
+} else {
+    console.log("I got nothing")
+}
+
+      console.log(regex);
+      console.log(rebuiltIt)
+
+
 
       let arrayFrom = Array.from(string);
       let b = "";
@@ -97,6 +122,8 @@ const Generator = ({ allIdeaPrompts, allEnglishLetters }) => {
 
       //   console.log(data.letter);
     });
+    console.log(userWordCharacter)
+
 
     // use the array created from the user's input string
     console.log(testUserArray);
