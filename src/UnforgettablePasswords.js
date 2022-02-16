@@ -41,7 +41,7 @@ const Generator = ({ allIdeaPrompts, allEnglishLetters }) => {
 
       let getArrayFrom = Array.from(userWord);
       testUserArray = Array.from(userWord);
-      console.log(testUserArray);
+    //   console.log(testUserArray);
 
       let testArrayPutBackTogether = getArrayFrom.push(...getArrayFrom);
       getArrayFrom.push(...getArrayFrom);
@@ -58,27 +58,81 @@ const Generator = ({ allIdeaPrompts, allEnglishLetters }) => {
   //   first, map through the database letters
 
   function changeWord(string) {
-    let rebuiltString = "";
-    // map through the englishLetters array from the database
-    allEnglishLetters.map((data) => {
-      let substituteArray = [
-        data.substitute1,
-        data.substitute2,
-        data.substitute3,
-      ];
+    console.log(string);
+    let reg = /a/g;
 
-// I need to output an array or string that matches only the characters in both allEnglishLetters.letter with a letter from the string argument 
-// GOTTA GET MATCH WORKING
+    console.log(string.replace(reg, "LOL"));
+
+    let rebuiltString = "";
+
+    // create a regular expression
+    function apower(item) {
+        let aRegex = new RegExp(item, "gi");
+    //   console.log("I'm the callback function", item);
+      return aRegex
+    }
+
+    // map through the string array create by applying Array.from on the string argument passed into the changeWord function
+    const matchArray = Array.from(string);
+    console.log(matchArray)
+
+    // a blank array that will hold the new word after substitutions are made in the map() 
+    let userWordCharacter = []
+
+    // converted word where replace() was used only without making the input word an array
+    let newWord = [];
+
+
+//  *** I need to write a function that takes the userword string and takes the allEnglishLetters array THEN outputs a new array of objects where the only letters are the letters that match the userword 
+
+    // map through the englishLetters array from the database
+    let newArray = allEnglishLetters.map((data) => {
+        let substituteArray = [
+            data.substitute1,
+            data.substitute2,
+            data.substitute3,
+          ];
+
+        let rebuiltIt = ""
+      let regex = apower(data.letter);
+      let arrayFrom = Array.from(string);
+      console.log(arrayFrom)
+
+      let matchArray = allEnglishLetters.match(data.letter)
+
+if (string.match(regex)) {
+    console.log(newWord)
+
+    newWord = string.replace(regex, getRandomObj(substituteArray))
+
+    // find the match and replace it
+    // newWord = string.replace(regex, getRandomObj(substituteArray))
+
+    console.log(newWord)
+    
+} else {
+    console.log("I got nothing")
+}
+
+    //   console.log(regex);
+
+
+      let b = "";
+
+      // I need to output an array or string that matches only the characters in both allEnglishLetters.letter with a letter from the string argument
+      // GOTTA GET MATCH WORKING
 
       let getArrayFrom = Array.from(string);
 
       // replace each letter with something else
-      console.log(getArrayFrom.replaceAll("tt", getRandomObj(substituteArray)));
+      //   console.log(getArrayFrom);
 
       // i want to look for matches in testUserArray
 
       //   console.log(data.letter);
     });
+    console.log(newWord)
+
 
     // use the array created from the user's input string
     console.log(testUserArray);
