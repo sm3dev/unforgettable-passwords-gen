@@ -235,14 +235,14 @@ const englishLetters = [
   {
     id: 34,
     letter: "t",
-    substitute1: ",+",
+    substitute1: "+",
     substitute2: "T",
     substitute3: "T",
   },
   {
     id: 35,
     letter: "tt",
-    substitute1: ",++",
+    substitute1: "++",
     substitute2: "TT",
     substitute3: "TT",
   },

@@ -79,8 +79,11 @@ const Generator = ({ allIdeaPrompts, allEnglishLetters }) => {
     // a blank array that will hold the new word after substitutions are made in the map() 
     let userWordCharacter = []
 
+    // converted word where replace() was used only without making the input word an array
+    let newWord = "";
+
     // map through the englishLetters array from the database
-    const substitutedArray = allEnglishLetters.map((data) => {
+    allEnglishLetters.map((data) => {
         let substituteArray = [
             data.substitute1,
             data.substitute2,
@@ -89,25 +92,23 @@ const Generator = ({ allIdeaPrompts, allEnglishLetters }) => {
 
         let rebuiltIt = ""
       let regex = apower(data.letter);
+      let arrayFrom = Array.from(string);
 
 if (string.match(regex)) {
-    const newWord = [];
-    // find the match and replace it
-    userWordCharacter.push(string.replace(regex, getRandomObj(substituteArray)))
+    newWord = arrayFrom.map((obj) => obj.replace(regex, getRandomObj(substituteArray)))
 
-    console.log(string.replace(regex, data.substitute2))
-    console.log(string, regex, data.substitute2)
+    // find the match and replace it
+    // newWord = string.replace(regex, getRandomObj(substituteArray))
+
+    console.log(newWord)
     
 } else {
     console.log("I got nothing")
 }
 
-      console.log(regex);
-      console.log(rebuiltIt)
+    //   console.log(regex);
 
 
-
-      let arrayFrom = Array.from(string);
       let b = "";
 
       // I need to output an array or string that matches only the characters in both allEnglishLetters.letter with a letter from the string argument
@@ -122,7 +123,7 @@ if (string.match(regex)) {
 
       //   console.log(data.letter);
     });
-    console.log(userWordCharacter)
+    console.log(newWord)
 
 
     // use the array created from the user's input string
