@@ -58,22 +58,40 @@ const Generator = ({ allIdeaPrompts, allEnglishLetters }) => {
   //   first, map through the database letters
 
   function changeWord(string) {
+    console.log(string);
+    let reg = /a/g;
+
+    console.log(string.replace(reg, "LOL"));
+
     let rebuiltString = "";
+
+    // create a regular expression
+    function apower(item) {
+      console.log("I'm the callback function", item);
+      return new RegExp("item", "i");
+    }
+
     // map through the englishLetters array from the database
-    allEnglishLetters.map((data) => {
+    const substitutedArray = allEnglishLetters.map((data) => {
+      let regex = apower(data.letter);
+      console.log(regex);
+
       let substituteArray = [
         data.substitute1,
         data.substitute2,
         data.substitute3,
       ];
 
-// I need to output an array or string that matches only the characters in both allEnglishLetters.letter with a letter from the string argument 
-// GOTTA GET MATCH WORKING
+      let arrayFrom = Array.from(string);
+      let b = "";
+
+      // I need to output an array or string that matches only the characters in both allEnglishLetters.letter with a letter from the string argument
+      // GOTTA GET MATCH WORKING
 
       let getArrayFrom = Array.from(string);
 
       // replace each letter with something else
-      console.log(getArrayFrom.replaceAll("tt", getRandomObj(substituteArray)));
+      //   console.log(getArrayFrom);
 
       // i want to look for matches in testUserArray
 
