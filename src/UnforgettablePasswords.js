@@ -80,10 +80,13 @@ const Generator = ({ allIdeaPrompts, allEnglishLetters }) => {
     let userWordCharacter = []
 
     // converted word where replace() was used only without making the input word an array
-    let newWord = "";
+    let newWord = [];
+
+
+//  *** I need to write a function that takes the userword string and takes the allEnglishLetters array THEN outputs a new array of objects where the only letters are the letters that match the userword 
 
     // map through the englishLetters array from the database
-    allEnglishLetters.map((data) => {
+    let newArray = allEnglishLetters.map((data) => {
         let substituteArray = [
             data.substitute1,
             data.substitute2,
@@ -93,9 +96,14 @@ const Generator = ({ allIdeaPrompts, allEnglishLetters }) => {
         let rebuiltIt = ""
       let regex = apower(data.letter);
       let arrayFrom = Array.from(string);
+      console.log(arrayFrom)
+
+      let matchArray = allEnglishLetters.match(data.letter)
 
 if (string.match(regex)) {
-    newWord = arrayFrom.map((obj) => obj.replace(regex, getRandomObj(substituteArray)))
+    console.log(newWord)
+
+    newWord = string.replace(regex, getRandomObj(substituteArray))
 
     // find the match and replace it
     // newWord = string.replace(regex, getRandomObj(substituteArray))
